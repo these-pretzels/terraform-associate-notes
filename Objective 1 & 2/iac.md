@@ -52,12 +52,19 @@ Core TF workflow:
 </details>
 
 ## Objective 2: Understand Terraform's purpose (vs other IaC)
-<details><summary>Explain multi-cloud and provider-agnostic benefits (TF use cases)</summary>
+<details><summary>Explain multi-cloud and provider-agnostic benefits</summary>
 <p>
 TF can use same workflow to manage multiple providers and handle cross-cloud dependencies. Simplifies management and orchestration for large scale infras. This means in the event of failure there is a more graceful recovery of a region or provider. 
 
+<p>
+# TF use cases
 Application deployment, scaling and monitoring tools <br>
 Use TF to deploy, release, scale, monitor multi-tier applications. TF allows you to manage resources in each tier together and auto handle dependencies between tiers.
 
+Self service cluster <br>
+Use TF to build self service infra model that lets teams manage their own infra independently. TF modules can be used to codify standards for deploying and managing services. 
+
+Policy compliance and management  <br>
+Use sentinel to automatically enforce compliance and governance policies before TF make infra changes. Sentinel available with TFC team and governance tier. 
 
 </details>
