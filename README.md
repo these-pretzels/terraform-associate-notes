@@ -15,8 +15,8 @@ This repository contains a study guide created in preparation for passing the [T
   9. [Understand Terraform Cloud and Enterprise capabilities](/Objective%209/cloud-and-enterprise.md)
 
 ## Hashicorp Resources
-[Exam Review](https://developer.hashicorp.com/terraform/tutorials/certification/associate-review)
-[Official Study Guide](https://developer.hashicorp.com/terraform/tutorials/certification/associate-study)
+- [Exam Review](https://developer.hashicorp.com/terraform/tutorials/certification/associate-review)
+- [Official Study Guide](https://developer.hashicorp.com/terraform/tutorials/certification/associate-study)
   
 ## Additional External Resources
 Practice Exams 
