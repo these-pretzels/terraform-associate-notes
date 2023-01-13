@@ -70,19 +70,38 @@ PaaS application setup <br>
 Some platform vendors allow you to create web apps and attach add-ons. TF can codify the setup required for these PaaS setups.
 
 Software defined networking <br>
-
 TF can interact with SDNs to auto configure network according to the app requirements. 
 Kubernetes <br>
 
 Open source workload scheduler for containerized applications. TF can both deploy and manage its resources (pods, deployments, services). 
-Parallel environments <br>
 
+Parallel environments <br>
 TF allows you to rapidly spin up and decomm infra for dev / test / QA / prod. Can create disposable environments as needed, also cost efficient. 
+
 Software demos <br>
 TF to create, provision, bootstrap demo on different cloud providers. Allow user to try software on own infra.
 </details>
 
 <details><summary>Explain the benefits of state	</summary>
 <p>
+State is necessary for TF to function. Purpose of state file. <p>
+
+**Mapping to real world**<br>
+TF requires database to map config to real world. IE: a resource like `aws_instance` maps to an actual ec2 instance `i-123abcd`
+Cannot use tags because note all resources support tags, and not all cloud providers support tags. TF uses its own state structure to map resources to real world.
+
+**Metadata** <br>
+TF must also track metadata, like resource dependencies. When we delete resource from config, TF must know how to delete from remote system. 
+To ensure correct operation, TF retains copy of most recent set of dependencies within state.
+
+**Performance** <br>
+TF store cache of attribute values for all resources in state. Done only as a performance improvement.
+When running `terraform plan`, TF must know current state of resources, in order to determine the changes it needs to make - per the desired config.
+- Small infras, TF can query providers and sync latest attributes from all resources. This is default for TF: every plan and apply.
+- Large infras, TF querying every resource is too slow. Users can use `-refresh=false` flag and `-target` flag to work around this. In this case, the cached state is treated as source of truth.
+
+**Syncing**  <br>
+Default config, TF stores state in a file in current working directory. 
+As team grows, `Remote state` is the recommended solution. TF can use remote locking as a measure to avoid multiple users from running TF at the same time. Also to make sure that each TF run begins with the most recent updated state.
 
 </details>
