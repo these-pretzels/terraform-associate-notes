@@ -56,7 +56,7 @@ Core TF workflow:
 <p>
 TF can use same workflow to manage multiple providers and handle cross-cloud dependencies. Simplifies management and orchestration for large scale infras. This means in the event of failure there is a more graceful recovery of a region or provider. 
 
-Application deployment, scaling and monitoring tools
+Application deployment, scaling and monitoring tools <br>
 Use TF to deploy, release, scale, monitor multi-tier applications. TF allows you to manage resources in each tier together and auto handle dependencies between tiers.
 
 
