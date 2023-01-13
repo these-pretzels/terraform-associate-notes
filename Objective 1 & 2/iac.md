@@ -9,12 +9,14 @@ HashiCorp Terraform is an infrastructure as code tool that lets you define both 
 
 <details><summary>Describe Day 0 and Day 1?</summary>
  <p>
-- **Can be applied throughout the infrastructure lifecycle, both on the initial and life of the infra. Day 0 and Day1**
+- ** Can be applied throughout the infrastructure lifecycle, both on the initial and life of the infra. Day 0 and Day1 **
+<p>
   - IAC in private or public cloud
   - Day 0 : Initial Build 
   - Day 1 : OS and application config you apply after the initial build. Includes OS updates, patches, app config. 
   - TF include libraries of providers and modules that make it easy to write and provision infra. If we need to apply Day 1 configs, then code can use chef/ansible etc. 
 </details>
+
 <details><summary>Describe advantages of IaC patterns?</summary>
 <p>
   - **Saves time by making it easy to provision and apply infrastructure configuration.** Workflow is **standardized** across providers wether its VMWare, AWS, Azure, or GCP. 
