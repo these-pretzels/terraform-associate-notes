@@ -4,8 +4,8 @@ This repository contains a study guide created in preparation for passing the [T
 
 ## Exam Objectives
 
-  1. [Understand Infrastructure as Code (IaC) concepts](/Objective%201%20&%202/Iac.md)
-  2. [Understand Terraform's purpose (vs other IaC)](/Objective%201%20&%202/Iac.md)
+  1. [Understand Infrastructure as Code (IaC) concepts](/Objective%201%20&%202/iac.md)
+  2. [Understand Terraform's purpose (vs other IaC)](/Objective%201%20&%202/iac.md)
   3. [Understand Terraform basics](/Objective%203/terraform-basics.md)
   4. [Use the Terraform CLI (outside of core workflow)](/Objective%204/terraform-cli.md)
   5. [Interact with Terraform modules](/Objective%205/modules.md)
