@@ -46,9 +46,18 @@ During execute, TF will examine current state of infra. Determine differences be
 <p>
 TF creates and manages resources on cloud and other platforms through application programming interfaces (API). 
 Core TF workflow:
-	Write: Define infra resources in config files
-	Plan: Review changes TF will make to your infra 
-	Apply: TF provisions your infra in the correct order and updates state file
+	- Write: Define infra resources in config files
+	- Plan: Review changes TF will make to your infra 
+	- Apply: TF provisions your infra in the correct order and updates state file
 </details>
 
 ## Objective 2: Understand Terraform's purpose (vs other IaC)
+<details><summary>Explain multi-cloud and provider-agnostic benefits (TF use cases)</summary>
+<p>
+TF can use same workflow to manage multiple providers and handle cross-cloud dependencies. Simplifies management and orchestration for large scale infras. This means in the event of failure there is a more graceful recovery of a region or provider. 
+
+Application deployment, scaling and monitoring tools
+Use TF to deploy, release, scale, monitor multi-tier applications. TF allows you to manage resources in each tier together and auto handle dependencies between tiers.
+
+
+</details>
