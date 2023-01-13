@@ -1,6 +1,7 @@
 # Terraform Associate Exam Study Guide
 
-This repository contains a study guide created in preparation for passing the [Terraform Associate](https://www.hashicorp.com/certification/terraform-associate) certification exam. 
+This repository contains a study guide created in preparation for passing the [Terraform Associate](https://www.hashicorp.com/certification/terraform-associate) certification exam (002). <p>
+Hot tip: There is a newer exam being released later this year in March 2023. 
 
 ## Exam Objectives
 
