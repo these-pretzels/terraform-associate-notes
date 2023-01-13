@@ -102,6 +102,6 @@ When running `terraform plan`, TF must know current state of resources, in order
 
 **Syncing**  <br>
 Default config, TF stores state in a file in current working directory. 
-As team grows, `Remote state` is the recommended solution. TF can use remote locking as a measure to avoid multiple users from running TF at the same time. Also to make sure that each TF run begins with the most recent updated state.
+As team grows, *Remote state* is the recommended solution. TF can use remote locking as a measure to avoid multiple users from running TF at the same time. Also to make sure that each TF run begins with the most recent updated state.
 
 </details>
