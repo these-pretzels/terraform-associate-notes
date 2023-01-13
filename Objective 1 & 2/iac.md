@@ -55,9 +55,8 @@ Core TF workflow:
 <details><summary>Explain multi-cloud and provider-agnostic benefits</summary>
 <p>
 TF can use same workflow to manage multiple providers and handle cross-cloud dependencies. Simplifies management and orchestration for large scale infras. This means in the event of failure there is a more graceful recovery of a region or provider. 
-
 <p>
-# TF use cases
+TF use cases <p>
 Application deployment, scaling and monitoring tools <br>
 Use TF to deploy, release, scale, monitor multi-tier applications. TF allows you to manage resources in each tier together and auto handle dependencies between tiers.
 
@@ -66,5 +65,24 @@ Use TF to build self service infra model that lets teams manage their own infra 
 
 Policy compliance and management  <br>
 Use sentinel to automatically enforce compliance and governance policies before TF make infra changes. Sentinel available with TFC team and governance tier. 
+
+PaaS application setup <br>
+Some platform vendors allow you to create web apps and attach add-ons. TF can codify the setup required for these PaaS setups.
+
+Software defined networking <br>
+
+TF can interact with SDNs to auto configure network according to the app requirements. 
+Kubernetes <br>
+
+Open source workload scheduler for containerized applications. TF can both deploy and manage its resources (pods, deployments, services). 
+Parallel environments <br>
+
+TF allows you to rapidly spin up and decomm infra for dev / test / QA / prod. Can create disposable environments as needed, also cost efficient. 
+Software demos <br>
+TF to create, provision, bootstrap demo on different cloud providers. Allow user to try software on own infra.
+</details>
+
+<details><summary>Explain the benefits of state	</summary>
+<p>
 
 </details>
