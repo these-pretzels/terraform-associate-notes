@@ -89,10 +89,10 @@ LPT (which you knew already lol): Terraform loads all files in the current direc
 <details><summary> 	Store remote state and migrate to TFC </summary>
 <p>
 
--TFC allows easy version, audit and collaborate on infra changes. When setting up TFC, you need to add a `cloud` block and replace `organization-name` with your TFC name.
--`terraform login`, then paste the API key into the terminal. 
--`terraform init`, to re-initialize config and migrate to TFC. Type, `yes` when prompted.
--Then delete local state file `rm terraform.tfstate`
+- TFC allows easy version, audit and collaborate on infra changes. When setting up TFC, you need to add a `cloud` block and replace `organization-name` with your TFC name.
+- `terraform login`, then paste the API key into the terminal. 
+- `terraform init`, to re-initialize config and migrate to TFC. Type, `yes` when prompted.
+- Then delete local state file `rm terraform.tfstate`
 
 <br>
 Set workspace variables
@@ -103,7 +103,23 @@ Navigate to your workspace in TFC and go to the workspace's Variables page. Unde
 </details>
 
 
+**Providers**
 
+<p>
+<details><summary> Provider configuration  </summary>
+<p>
+
+</details>
+<p>
+<details><summary> title </summary>
+<p>
+
+</details>
+<p>
+<details><summary> title </summary>
+<p>
+
+</details>
 <p>
 <details><summary> title </summary>
 <p>
