@@ -102,14 +102,60 @@ You must configure your workspace with your AWS credentials to authenticate the 
 Navigate to your workspace in TFC and go to the workspace's Variables page. Under Workspace Variables, add your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as Environment Variables, making sure to mark them as "Sensitive".
 </details>
 
+<p>
 
 **Providers**
-
 <p>
 <details><summary> Provider configuration  </summary>
 <p>
+Providers allow Terraform to interact with cloud providers, SaaS providers, and other APIs.
+
+The name given in the block header is the local name of the provider to configure. This provider should already be included in a `required_providers` block.
+Providers require their own configuration for regions, authentication etc.
+The body between `{ }` contain config arguments for provider. Most arguments are defined by provider itself. 
+<p>
+
+There are also two "meta-arguments" that are defined by Terraform itself and available for all `provider` blocks:
+- Alias: for using the same provider with different config for different resources. Main reason for this to support multiple regions for cloud platform. Provider block without alias is default config for that provider.  To reference alternate provider config, specify in this format: `provider_name.alias`
+- Version (deprecated): The `version` meta-argument specifies a version constraint for a provider, and works the same way as the version argument in a `required_providers` block.
+</details>
+<p>
+
+**Provider Requirements**
+<p>
+<details><summary> Requiring Providers </summary>
+<p>
+
+Each TF module must declare which provider it requires. Declared in a `required_providers` block.  The `required_providers` block must be nested inside the top-level terraform block. Consists of local name, source location, version constraint
+
+```terraform
+terraform {
+  required_providers {
+    mycloud = {
+      source  = "mycorp/mycloud"
+      version = "~> 1.0"
+    }
+  }
+}
+```
+
+Each argument in the `required_providers` block enables one provider. The key determines the provider's local name (its unique identifier within this module), and the value is an object with the following elements:
+- Source: the global source address for the provider you intend to use, such as `hashicorp/aws`.
+- Version: a version constraint specifying which subset of available provider versions the module is compatible with.
 
 </details>
+
+<p>
+<details><summary> Names and addresse </summary>
+<p>
+Each provider has two identifiers:
+
+- A unique source address, which is only used when requiring a provider.
+- A local name, which is used everywhere else in a Terraform module.
+
+</details>
+
+
 <p>
 <details><summary> title </summary>
 <p>
@@ -120,8 +166,11 @@ Navigate to your workspace in TFC and go to the workspace's Variables page. Unde
 <p>
 
 </details>
+
+</details>
 <p>
 <details><summary> title </summary>
 <p>
 
 </details>
+
