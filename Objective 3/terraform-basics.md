@@ -146,21 +146,33 @@ Each argument in the `required_providers` block enables one provider. The key de
 </details>
 
 <p>
-<details><summary> Names and addresse </summary>
+<details><summary> Names and addresses </summary>
 <p>
 Each provider has two identifiers:
+<br>
+A unique source address, which is only used when requiring a provider. A local name, which is used everywhere else in a Terraform module.
 
-- A unique source address, which is only used when requiring a provider.
-- A local name, which is used everywhere else in a Terraform module.
+- Local name: Module specific and assigned when requiring a provider, must be unique per-module. 
+    TF configs always refer to provider using their local name. IE: resources from aws, all begin with `aws_instance` etc. 
+
+- Source address: This is the providers global identifier. Also tells TF where to download it. 
+    Consists of: `Hostname/Namespace/Type`. 
+
+    - Hostname: Name of TF registry that distributes the provider. Defaults to: `registry.terraform.io`
+    - Namespace: organizational namespace within the registry. Represents org that publishes the provider.
+    - Type: Short name for platform or system the provider manages. Usually the providers preferred local name. 
+
+The source address with all three components given explicitly is called the provider's fully-qualified address.
+</details>
+
+<p>
+<details><summary> Version constraints  </summary>
+<p>
 
 </details>
 
 
-<p>
-<details><summary> title </summary>
-<p>
 
-</details>
 <p>
 <details><summary> title </summary>
 <p>
