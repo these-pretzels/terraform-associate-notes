@@ -33,9 +33,26 @@ Use `terraform validate` to make sure config is syntactically valid and internal
 </details>
 
 <p>
-<details><summary> title </summary>
+<details><summary> titlCreate infrastructure </summary>
 <p>
 
+To apply config, use  `terraform apply`. Before execution, TF prints out an execution plan - describing the actions TF will take. 
+
+Terraform will now pause and wait for your approval before proceeding. If anything in the plan seems incorrect or dangerous, it is safe to abort here before Terraform modifies your infrastructure.
+
+In this case the plan is acceptable, so type yes at the confirmation prompt to proceed. Executing the plan will take a few minutes since Terraform waits for the EC2 instance to become available.
+</details>
+
+<p>
+<details><summary> Inspect state </summary>
+<p>
+
+After you apply your changes, TF wrote data in a file called `terraform.tfstate`. Stores the IDs and properties of resources it manages. State file is the only way TF can track which resources it manages. Also contains sensitive data, so use TFC/TFE or store remotely. 
+
+Inspect the state file using `terraform show`.
+<br>
+
+Can use `terraform state list` to show list of resources in project state.
 </details>
 
 
