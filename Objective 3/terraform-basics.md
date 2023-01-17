@@ -33,7 +33,7 @@ Use `terraform validate` to make sure config is syntactically valid and internal
 </details>
 
 <p>
-<details><summary> titlCreate infrastructure </summary>
+<details><summary> Create infrastructure </summary>
 <p>
 
 To apply config, use  `terraform apply`. Before execution, TF prints out an execution plan - describing the actions TF will take. 
@@ -54,6 +54,54 @@ Inspect the state file using `terraform show`.
 
 Can use `terraform state list` to show list of resources in project state.
 </details>
+
+<p>
+<details><summary> Change Infrastructure </summary>
+<p>
+
+The prefix `-/+` means that Terraform will destroy and recreate the resource, rather than updating it in-place
+Terraform can update some attributes in-place - indicated with the `~` prefix.
+
+TF prompts for approval of the execution plan before proceeding. Answer `yes` to execute the planned steps.
+</details>
+
+
+<p>
+<details><summary> Destroy Infrastructure </summary>
+<p>
+
+To destroy managed resources use `terraform destroy `command. It’s the inverse of `terraform apply` - it terminates all resources specified in your TF state. Doesn’t touch non TF resources.
+The `-` prefix indicates that the instance will be destroyed. Auto determines the order to destroy - just like apply. 
+Answer `yes` to execute plan and destroy all the things.
+</details>
+
+
+<p>
+<details><summary> Output </summary>
+<p>
+
+Using a file called `outputs.tf` - you can define outputs for your resources. Use the command `terraform output` to query outputs. Use these to connect TF projects with other parts of your infra.
+
+LPT (which you knew already lol): Terraform loads all files in the current directory ending in `.tf`, so you can name your configuration files however you choose.
+</details>
+
+<p>
+<details><summary> 	Store remote state and migrate to TFC </summary>
+<p>
+
+-TFC allows easy version, audit and collaborate on infra changes. When setting up TFC, you need to add a `cloud` block and replace `organization-name` with your TFC name.
+-`terraform login`, then paste the API key into the terminal. 
+-`terraform init`, to re-initialize config and migrate to TFC. Type, `yes` when prompted.
+-Then delete local state file `rm terraform.tfstate`
+
+<br>
+Set workspace variables
+<br>
+
+You must configure your workspace with your AWS credentials to authenticate the AWS provider.
+Navigate to your workspace in TFC and go to the workspace's Variables page. Under Workspace Variables, add your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as Environment Variables, making sure to mark them as "Sensitive".
+</details>
+
 
 
 <p>
