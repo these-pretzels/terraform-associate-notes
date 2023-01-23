@@ -11,7 +11,7 @@ HashiCorp Terraform is an infrastructure as code tool that lets you define both 
  <p>
   - Can be applied throughout the infrastructure lifecycle, both on the initial and life of the infra. Day 0 and Day1 
 <p>
-  - IAC in private or public cloud.nTF include libraries of providers and modules that make it easy to write and provision infra. If we need to apply Day 1 configs, then code can use chef/ansible etc. 
+  - IAC in private or public cloud. TF include libraries of providers and modules that make it easy to write and provision infra. If we need to apply Day 1 configs, then code can use chef/ansible etc. <br>
   - Day 0 : Initial Build 
   - Day 1 : OS and application config you apply after the initial build. Includes OS updates, patches, app config. 
 </details>
