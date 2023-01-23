@@ -169,9 +169,36 @@ The source address with all three components given explicitly is called the prov
 <details><summary> Version constraints  </summary>
 <p>
 
+-Each provider dependency you declare, should have `version` constraint in the version argument, so TF can select single version per provider. <br>
+The version meta-argument specifies a version constraint for a provider, and works the same way as the version argument in a `required_providers` block. The version constraint in a provider configuration is only used if `required_providers` does not include one for that provider.
+<br>
+
+-If omitted, TF will accept any version of the provider. 
+Dependency lock file: can be used to control TF and ensure it always install same provider versions. Each module should at least declare the minimum provider version it is known to work with, using the `>=` version constraint syntax:
+</details>
+
+<p>
+<details><summary> Built in providers </summary>
+
+One provider that is built into TF. It enables the `terraform_remote_state` data source.
+It has a special provider source address, which is `terraform.io/builtin/terraform`
+<p>
 </details>
 
 
+<p>
+<details><summary> In house providers </summary>
+<p>
+
+Anyone can develop their own TF provider. Can be used to configure proprietary systems.
+One option to distribute provider, to run an in-house private registry. 
+Another option is to place provider plugins in directories via `filesystem mirrors`
+
+All providers must have source address, that includes hostname of registry - but that doesn’t actually need to provide an actual registry service. For in house, you can use like a fake name.
+</details>
+
+
+**Terraform settings**
 
 <p>
 <details><summary> title </summary>
@@ -179,7 +206,12 @@ The source address with all three components given explicitly is called the prov
 
 </details>
 
+<p>
+<details><summary> title </summary>
+<p>
+
 </details>
+
 <p>
 <details><summary> title </summary>
 <p>
