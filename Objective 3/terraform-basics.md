@@ -142,12 +142,12 @@ terraform {
 Each argument in the `required_providers` block enables one provider. The key determines the provider's local name (its unique identifier within this module), and the value is an object with the following elements:
 - Source: the global source address for the provider you intend to use, such as `hashicorp/aws`.
 - Version: a version constraint specifying which subset of available provider versions the module is compatible with.
-
 </details>
 
 <p>
 <details><summary> Names and addresses </summary>
 <p>
+
 Each provider has two identifiers:
 <br>
 A unique source address, which is only used when requiring a provider. A local name, which is used everywhere else in a Terraform module.
@@ -179,12 +179,11 @@ Dependency lock file: can be used to control TF and ensure it always install sam
 
 <p>
 <details><summary> Built in providers </summary>
-
+<p>
 One provider that is built into TF. It enables the `terraform_remote_state` data source.
 It has a special provider source address, which is `terraform.io/builtin/terraform`
 <p>
 </details>
-
 
 <p>
 <details><summary> In house providers </summary>
@@ -199,6 +198,93 @@ All providers must have source address, that includes hostname of registry - but
 
 
 **Terraform settings**
+<p>
+
+- TF block: Settings are gathered together into `terraform` blocks. Each TF block contains settings related to TF’s behavior. Inside a TF block, only constant values can be used. 
+
+- Configuring TF cloud: Add a nested `cloud` block in the terraform block.
+  Using TFC through command line is called `CLI-driven run workflow`. When you use CLI workflow, TF plan/apply are remotely executed in TFC environment by default. This lets you use TFC with CLI workflow. 
+
+- Configuring TF backend: Nested `backend` block configures which state backend TF should use. Backend defines where TF stores its state data files. 
+  By default, TF uses backend called `local` - which stores state on a local disk. Don't need to configure a backend, when using TFC (If I have a `cloud block`, I cannot have a `backend block`.)
+
+
+**Backend configuration**
+<p>
+<details><summary> Credentials and sensitive data </summary>
+<p>
+
+Backends store state in a remote service, which allows multiple people to access it. Accessing remote state generally requires access credentials, since state data contains extremely sensitive information. 
+Terraform writes the backend configuration in plain text in two separate files.
+
+1) The `.terraform/terraform.tfstate` file contains the backend configuration for the current working directory.
+2) All plan files capture the information in `.terraform/terraform.tfstate` at the time the plan was created. This helps ensure Terraform is applying the plan to correct set of infrastructure.
+</details>
+
+<p>
+<details><summary> Initialization </summary>
+<p>
+
+When you change a backend's configuration, you must run `terraform init` again to validate and configure the backend before you can perform any plans, applies, or state operations. <br>
+
+After you initialize, Terraform creates a `.terraform/` directory locally. This directory contains the most recent backend configuration, including any authentication parameters you provided to the Terraform CLI. Do not check this directory into Git, as it may contain sensitive credentials for your remote backend. <br>
+
+The local backend configuration is different and entirely separate from the `terraform.tfstate` file that contains state data about your real-world infrastruture. Terraform stores the `terraform.tfstate` file in your remote backend.
+
+</details>
+
+<p>
+<details><summary> Partial configuration </summary>
+<p>
+
+- Don’t need to specify every required argument in backend config. When some or all arguments are omitted, it’s called: partial config. With a partial config, the remaining TF config arguments must be provided:
+    - File: config file may be specified with the `init` command. Use the `-backend-config=PATH` option when running `terraform init`. 
+    - Command line key/value pairs: This isn’t recommended for secrets. Use the `-backend-config=”KEY-VALUE”` when running `terraform init`.
+    - Interactively: TF will ask you for the required values and prompt for an answer.
+
+The final merged config is stored on disk in the `.terraform` directory. Should be Ignored from version control. It contains sensitive info. 
+</details>
+
+
+<p>
+<details><summary> Command-line key/value pairs example </summary>
+<p>
+
+Example of passing partial config with command-line key/value pairs:
+
+```terraform
+$ terraform init \
+    -backend-config="address=demo.consul.io" \
+    -backend-config="path=example_app/terraform_state" \
+    -backend-config="scheme=https"
+```
+</details>
+
+<p>
+<details><summary> Changing configuration </summary>
+<p>
+
+You can change your backend config at any time. Can change both config and backend type (S3 to consul). 
+TF auto detects any changes in your config and request a `reinitialization`. TF will ask you want to migrate existing state to the new config. This allows you to easily switch from one backend to another.
+If you're just reconfiguring the same backend, Terraform will still ask if you want to migrate your state. You can respond "no" in this scenario.
+</details>
+
+<p>
+<details><summary> Unconfiguring a Backend </summary>
+<p>
+
+If you no longer want to use any backend, you can simply remove the configuration from the file. Terraform will detect this like any other change and prompt you to reinitialize.
+As part of the reinitialization, Terraform will ask if you'd like to migrate your state back down to normal local state. Once this is complete then Terraform is back to behaving as it does by default.
+</details>
+
+**Provision Infrastructure**
+<p>
+
+<p>
+<details><summary> title </summary>
+<p>
+
+</details>
 
 <p>
 <details><summary> title </summary>
