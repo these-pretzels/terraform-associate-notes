@@ -180,6 +180,7 @@ Dependency lock file: can be used to control TF and ensure it always install sam
 <p>
 <details><summary> Built in providers </summary>
 <p>
+
 One provider that is built into TF. It enables the `terraform_remote_state` data source.
 It has a special provider source address, which is `terraform.io/builtin/terraform`
 <p>
@@ -196,8 +197,10 @@ Another option is to place provider plugins in directories via `filesystem mirro
 All providers must have source address, that includes hostname of registry - but that doesn’t actually need to provide an actual registry service. For in house, you can use like a fake name.
 </details>
 
-
 **Terraform settings**
+
+<p>
+<details><summary> General notes </summary>
 <p>
 
 - TF block: Settings are gathered together into `terraform` blocks. Each TF block contains settings related to TF’s behavior. Inside a TF block, only constant values can be used. 
@@ -207,9 +210,10 @@ All providers must have source address, that includes hostname of registry - but
 
 - Configuring TF backend: Nested `backend` block configures which state backend TF should use. Backend defines where TF stores its state data files. 
   By default, TF uses backend called `local` - which stores state on a local disk. Don't need to configure a backend, when using TFC (If I have a `cloud block`, I cannot have a `backend block`.)
-
+</details>
 
 **Backend configuration**
+
 <p>
 <details><summary> Credentials and sensitive data </summary>
 <p>
@@ -278,16 +282,19 @@ As part of the reinitialization, Terraform will ask if you'd like to migrate you
 </details>
 
 **Provision Infrastructure**
-<p>
 
 <p>
-<details><summary> title </summary>
+<details><summary> Provision infra with cloud-init </summary>
 <p>
 
+`Cloud-init` standard config support tool that allows you to pass a shell script to your instance that installs or configures machine to my specs.
+Add your configs to your .yaml template or whatever file you want. 
+Add cloud-init script to TF config. For example, your `user_data` will have the data file `template_file.user_data`. You’ll need a data block to retrieve the contents of the .yaml file. 
+It’s basically a template file that is rendered and the output is used for any value you need to config your instance. 
 </details>
 
 <p>
-<details><summary> title </summary>
+<details><summary> Packer notes here.. </summary>
 <p>
 
 </details>
