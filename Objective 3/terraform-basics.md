@@ -336,7 +336,15 @@ Take a look here if you want more details: https://developer.hashicorp.com/terra
 <details><summary> Provisioners are a Last Resort </summary>
 <p>
 
-https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax#provisioners-are-a-last-resort 
+Provisioners can be used to bootstrap a resource, cleanup before destroy, run configuration management, etc.
+Basically, don't use provisioners for any of these use-cases. It can be used, but it's probably not a good idea. 
+- Passing data into vms/compute resources. You can use `user_data` 
+- Running config management software. You can use `packer`
+- The `local-exec` provisioner invokes a local executable after a resource is created. This invokes a process on the machine running Terraform, not on the resource. 
+- The `remote-exec` provisioner invokes a script on a remote resource after it is created. This can be used to run a configuration management tool, bootstrap into a cluster, etc.
+<br>
+
+* To use a provisioner, add provisioner block inside the resource block of a compute instance.
 
 </details>
 
