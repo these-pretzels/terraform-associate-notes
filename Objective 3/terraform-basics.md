@@ -1,4 +1,4 @@
-`## Objective 3: Understand Terraform basics
+## Objective 3: Understand Terraform basics
 
 **General getting started tips**
 <p>
@@ -316,6 +316,37 @@ It’s basically a template file that is rendered and the output is used for any
 </details>
 
 <p>
+<details><summary> Set Up Terraform Cloud Run Task for HCP Packer </summary>
+<p>
+
+- HCP Packer has a Terraform Cloud run task integration, which validates that the machine images in your Terraform configuration are not revoked for being insecure or outdated.
+- Run task features: 
+    The Terraform Cloud run task for HCP Packer currently has two main features:
+    `data source image validation` scans your Terraform resources for references to `hcp_packer_iteration` and `hcp_packer_image` data sources. It will warn you if any referenced data source is associated with a revoked image iteration.
+    `resource image validation` scans your Terraform configuration for resources that use hard-coded machine image IDs and checks if the image is tracked by HCP Packer. If the image is associated with an image iteration, the run task will warn users if it is a revoked iteration. 
+- The HCP Packer Standard tier only supports data source image validation. The HCP Packer Plus tier supports both data source and resource image validation.
+<br>
+Take a look here if you want more details: https://developer.hashicorp.com/terraform/tutorials/provision/setup-tfc-run-task
+</details>
+
+
+**Provisioners**
+
+<p>
+<details><summary> Provisioners are a Last Resort </summary>
+<p>
+
+https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax#provisioners-are-a-last-resort 
+
+</details>
+
+<p>
+<details><summary> title </summary>
+<p>
+
+</details>
+
+<p>
 <details><summary> title </summary>
 <p>
 
@@ -327,4 +358,9 @@ It’s basically a template file that is rendered and the output is used for any
 
 </details>
 
-`
+<p>
+<details><summary> title </summary>
+<p>
+
+</details>
+
