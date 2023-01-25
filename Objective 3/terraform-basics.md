@@ -1,4 +1,4 @@
-## Objective 3: Understand Terraform basics
+`## Objective 3: Understand Terraform basics
 
 **General getting started tips**
 <p>
@@ -294,9 +294,25 @@ It’s basically a template file that is rendered and the output is used for any
 </details>
 
 <p>
-<details><summary> Packer notes here.. </summary>
+<details><summary> Provision Infrastructure with Packer </summary>
 <p>
 
+- Packer is HashiCorp's open-source tool for creating machine images from source configuration. You can configure Packer images with an operating system and software for your specific use-case.
+
+- 1) Create local ssh key: `ssh-keygen -t rsa -C "your_email@example.com" -f ./tf-packer`
+- 2) Packer config will pass it a shell script to run when it builds the image. Open the shell script to review the provisioning instructions. (you already know how to read bash scripts)
+- 3) Review the packer image. Change to the `images` directory. Open the `image.pkr.hcl` file in your file editor.
+    - Review the `variables` block. This region must match the region where Terraform will build your AMI. The `locals` block creates a formatted timestamp to keep your AMI name unique.
+    - The `source` block generates a template for your AMI. 
+    - The `build` block builds out your instances with specific scripts or files. Your build is based on the previously declared source as the type of AMI.
+    - Next, the `provisioner` blocks copy your key to the image and run your setup script.
+- 4) Run the Packer build command providing your image template file. `packer build image.pkr.hcl`. The final line of the output is the AMI ID you will pass into your Terraform configuration in the next step.
+
+- Deploy your Packer image with Terraform
+  - The AMI is your artifact from the Packer run and is available in your AWS account in the EC2 Images section. You can visit the AWS Web Console to view this AMI ID again.
+  - To use this AMI in your Terraform environment, navigate to the `instances` directory.
+  - Open the `main.tf` file and navigate to the `aws_instance` resource. Edit the `ami` attribute with the AMI ID you received from your Packer build.
+  - Save, initialize and apply:  `terraform init && terraform apply`
 </details>
 
 <p>
@@ -311,3 +327,4 @@ It’s basically a template file that is rendered and the output is used for any
 
 </details>
 
+`
