@@ -284,7 +284,7 @@ As part of the reinitialization, Terraform will ask if you'd like to migrate you
 **Provision Infrastructure**
 
 <p>
-<details><summary> Provision infra with cloud-init </summary>
+<details><summary>3e: Provision infra with cloud-init </summary>
 <p>
 
 `Cloud-init` standard config support tool that allows you to pass a shell script to your instance that installs or configures machine to my specs.
@@ -294,7 +294,7 @@ It’s basically a template file that is rendered and the output is used for any
 </details>
 
 <p>
-<details><summary> Provision Infrastructure with Packer </summary>
+<details><summary>3e: Provision Infrastructure with Packer </summary>
 <p>
 
 - Packer is HashiCorp's open-source tool for creating machine images from source configuration. You can configure Packer images with an operating system and software for your specific use-case.
@@ -316,7 +316,7 @@ It’s basically a template file that is rendered and the output is used for any
 </details>
 
 <p>
-<details><summary> Set Up Terraform Cloud Run Task for HCP Packer </summary>
+<details><summary>3e: Set Up Terraform Cloud Run Task for HCP Packer </summary>
 <p>
 
 - HCP Packer has a Terraform Cloud run task integration, which validates that the machine images in your Terraform configuration are not revoked for being insecure or outdated.
@@ -329,11 +329,10 @@ It’s basically a template file that is rendered and the output is used for any
 Take a look here if you want more details: https://developer.hashicorp.com/terraform/tutorials/provision/setup-tfc-run-task
 </details>
 
-
 **Provisioners**
 
 <p>
-<details><summary> Provisioners are a Last Resort </summary>
+<details><summary>3e: Provisioners are a Last Resort </summary>
 <p>
 
 Provisioners can be used to bootstrap a resource, cleanup before destroy, run configuration management, etc.
@@ -348,15 +347,26 @@ Basically, don't use provisioners for any of these use-cases. It can be used, bu
 
 </details>
 
+**3b: Describe plug-in based architecture**
+
 <p>
-<details><summary> title </summary>
+<details><summary>3b: Perform CRUD Operations with Providers </summary>
 <p>
 
+- Terraform is comprised of Terraform Core and Terraform Plugins.
+  - Terraform Core reads the configuration and builds the resource dependency graph.
+  - Terraform Plugins (providers and provisioners) bridge Terraform Core and their respective target APIs. Terraform provider plugins implement resources via basic CRUD (create, read, update, and delete) APIs to communicate with third party services.
+
+- While most Terraform providers manage cloud infrastructure (e.g. AWS, Azure and GCP providers), providers can serve as an interface to any API and allow Terraform to potentially manage any resource. 
 </details>
 
+**3c: Demonstrate using multiple providers**
+
 <p>
-<details><summary> title </summary>
+<details><summary> 3c: Lock and Upgrade Provider Versions</summary>
 <p>
+
+
 
 </details>
 
