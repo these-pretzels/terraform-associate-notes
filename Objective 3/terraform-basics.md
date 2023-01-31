@@ -366,19 +366,15 @@ Basically, don't use provisioners for any of these use-cases. It can be used, bu
 <details><summary> 3c: Lock and Upgrade Provider Versions</summary>
 <p>
 
+When multiple users or automation tools run the same Terraform configuration, they should all use the same versions of their required providers. There are two ways for you to manage provider versions in your configuration:
 
+1) Specify provider version constraints in your configuration's `terraform` block.
+2) Use the dependency lock file
 
-</details>
+If you do not scope provider version appropriately, Terraform will download the latest provider version that fulfills the version constraint. This may lead to unexpected infrastructure changes.
 
-<p>
-<details><summary> title </summary>
-<p>
+The lock file instructs Terraform to always install the same provider version, ensuring that consistent runs across your team or remote sessions.
 
-</details>
-
-<p>
-<details><summary> title </summary>
-<p>
+- The `-upgrade` flag will upgrade all providers to the latest version consistent within the version constraints specified in your configuration.
 
 </details>
-
