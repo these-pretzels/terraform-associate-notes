@@ -1,4 +1,4 @@
-## Objective 4: Interact with Terraform modules
+## Objective 5: Interact with Terraform modules
 
 <p>
 <details><summary>5a: General module notes </summary>
@@ -77,12 +77,15 @@ output "vpc_public_subnets" {
 - TF loads variables in this order:
 
     - Environment variables
-    - The terraform.tfvars file, if present.
-    - The terraform.tfvars.json file, if present.
-    - Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
-    - Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+    - The `terraform.tfvars` file, if present.
+    - The `terraform.tfvars.json` file, if present.
+    - Any `*.auto.tfvars` or `*.auto.tfvars.json` files, processed in lexical order of their filenames.
+    - Any `-var` and `-var-file` options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+
+on this page now: https://developer.hashicorp.com/terraform/language/modules/syntax
 
 </details>
+
 
 
 <p>
