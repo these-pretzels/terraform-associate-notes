@@ -52,27 +52,36 @@
 <details><summary>  6c: Validate a Terraform configuration (terraform validate)	 </summary>
 <p>
 
+- Validate runs checks that verify whether a configuration is syntactically valid and internally consistent, regardless of any provided variables or existing state. 
+- To initialize a working directory for validation without accessing any configured backend, use: `$ terraform init -backend=false`
+- When you use the `-json` option, Terraform will produce validation results in JSON format. Highlighting errors in a text editor.
 
 </details>
 
 <p>
-<details><summary>  	 </summary>
+<details><summary> 6d: Generate and review an execution plan for Terraform (terraform plan) </summary>
 <p>
 
+- Creates an execution plan that you can preview your changes. When a plan happens, TF reads the current state file, compares current and prior state, proposes a set of changes.
+- Can use `terraform plan -out=FILE` with apply in part of running TF in automation. 
+- Plan modes: `-destroy`, which creates a plan to destroy all remote objects, and `-refresh-only`, which creates a plan to update Terraform state and root module output values.
 
 </details>
 
 <p>
-<details><summary>  	 </summary>
+<details><summary>6e: Execute changes to infrastructure with Terraform (terraform apply)	  	 </summary>
 <p>
 
-
+- The `terraform apply` command executes the actions proposed in a Terraform plan. 
+- You can pass the `-auto-approve` option to instruct Terraform to apply the plan without asking for confirmation.
 </details>
 
 <p>
-<details><summary>  	 </summary>
+<details><summary>6f: Destroy Terraform managed infrastructure (terraform destroy)</summary>
 <p>
 
+- The `terraform destroy` command is a convenient way to destroy all remote objects managed by a particular Terraform configuration. AKA - burn all the things. Lol.
+- Can also use `terraform plan -destroy` for a proposed destory changes.
 
 </details>
 
