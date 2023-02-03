@@ -82,23 +82,32 @@ output "vpc_public_subnets" {
     - Any `*.auto.tfvars` or `*.auto.tfvars.json` files, processed in lexical order of their filenames.
     - Any `-var` and `-var-file` options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
 
-on this page now: https://developer.hashicorp.com/terraform/language/modules/syntax
+- To call a child module
+    - Modules are called from within other modules using module blocks.
+    - The label after the `module` keyword is a local name, which the calling module can use to refer.
+    - All modules require a `source` argument. Its value is either the path to a local directory containing the module's configuration files, or a remote module source that Terraform should download and use. Don't forget to run `terraform init` afterwards.
+    - Use the `version` argument in the `module` block to specify versions. It's recommended practice to use version. 
+    - TF also has meta-arguments. `Count`, `for_each`, `providers`, `depends_on`
+<br>
+
+- To preserve existing objects, you can use refactoring blocks to record the old and new addresses for each resource instance. 
 
 </details>
 
-
-
 <p>
-<details><summary> title </summary>
+<details><summary> 5d: Discover modules from the public Terraform Registry </summary>
 <p>
 
+- Same notes as 5a above. lol.
+- When using a new module for the first time, you must run either `terraform init` or `terraform get` to install the module. When you run these commands, Terraform will install any new modules in the `.terraform/modules` directory within your configuration's working directory. 
 </details>
 
-
 <p>
-<details><summary> title </summary>
+<details><summary> 5e: Defining module version	 </summary>
 <p>
 
+- Use the version argument in the module block to specify versions. It's recommended practice to use version. 
+- Terraform will use the newest installed version of the module that meets the constraint; if no acceptable versions are installed, it will download the newest version that meets the constraint.
 </details>
 
 
