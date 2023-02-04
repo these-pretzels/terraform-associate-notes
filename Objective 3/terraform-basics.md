@@ -238,19 +238,6 @@ The local backend configuration is different and entirely separate from the `ter
 </details>
 
 <p>
-<details><summary> Partial configuration </summary>
-<p>
-
-- Don’t need to specify every required argument in backend config. When some or all arguments are omitted, it’s called: partial config. With a partial config, the remaining TF config arguments must be provided:
-    - File: config file may be specified with the `init` command. Use the `-backend-config=PATH` option when running `terraform init`. 
-    - Command line key/value pairs: This isn’t recommended for secrets. Use the `-backend-config=”KEY-VALUE”` when running `terraform init`.
-    - Interactively: TF will ask you for the required values and prompt for an answer.
-
-The final merged config is stored on disk in the `.terraform` directory. Should be Ignored from version control. It contains sensitive info. 
-</details>
-
-
-<p>
 <details><summary> Command-line key/value pairs example </summary>
 <p>
 
