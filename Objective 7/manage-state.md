@@ -94,11 +94,4 @@ The final merged config is stored on disk in the `.terraform` directory. Should 
     - The S3 backend supports encryption at rest when the encrypt option is enabled. 
 
 - HashiCorp Vault secures, stores, and tightly controls access to tokens, passwords, and other sensitive values.
-
-</details>
-
-<p>
-<details><summary>  </summary>
-<p>
-
 </details>
