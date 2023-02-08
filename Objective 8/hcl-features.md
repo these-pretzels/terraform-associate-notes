@@ -83,11 +83,43 @@ output "instance_ip_addr" {
 <details><summary> 8d: Create and differentiate resource and data configuration </summary>
 <p>
 
+- Resources: are the most important element in the Terraform language. Each resource block describes one or more infrastructure objects. 
+
+<br>
+
+- Data sources: allow Terraform to use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions.
+- The data source and name together serve as an identifier for a given resource and so must be unique within a module.
+- Looks something like this: 
+
+``` data "aws_ami" "example" {
+  most_recent = true
+
+  owners = ["self"]
+  tags = {
+    Name   = "app-server"
+    Tested = "true"
+  }
+}
+```
+
+- Then you can reference that data resource using this format: `data.type.name.attribute `/ `data.aws_ami.example.id`. Pretty simple stuff.
+
 </details>
 
 <p>
-<details><summary>  </summary>
+<details><summary>8e: Use resource addressing and resource parameters to connect resources together</summary>
 <p>
+
+- A resource address is a string that identifies zero or more resource instances in your overall configuration. Takes this form: `[module path][resource spec]`
+- A module path addresses a module within the tree of modules. It takes the form: `module.module_name[module index]`
+- A resource spec addresses a specific resource instance in the selected module. It has the following syntax: `resource_type.resource_name[instance index]`
+<br>
+
+Named values:
+- 
+
+https://developer.hashicorp.com/terraform/language/expressions/references
+
 
 </details>
 
