@@ -115,41 +115,85 @@ output "instance_ip_addr" {
 - A resource spec addresses a specific resource instance in the selected module. It has the following syntax: `resource_type.resource_name[instance index]`
 <br>
 
-Named values:
-- 
-
-https://developer.hashicorp.com/terraform/language/expressions/references
-
-
+Named values. Each of these names is an expression that references the associated value:
+- Resources: `<RESOURCE TYPE>.<NAME> `represents a managed resource of the given type and name.
+- Input: `var.<NAME> `is the value of the input variable of the given name.
+- Local: `local.<NAME>` is the value of the local value of the given name.
+- Child Module Outputs : `module.<MODULE NAME>` is an value representing the results of a module block.
+- Data Sources: `data.<DATA TYPE>.<NAME>` is an object representing a data resource of the given data source type and name. 
+- Filesystem and Workspace Info: 
+  - `path.module`, `path.root`,` path.cwd`, `terraform.workspace` 
 </details>
 
 <p>
-<details><summary>  </summary>
+<details><summary>8f: Use Terraform built-in functions to write configuration</summary>
 <p>
 
+- The Terraform language includes a number of built-in functions that you can call from within expressions to transform and combine values. EX: `max(5, 12, 9)`
+<br>
+
+- Use `templatefile` to dynamically generate a script:
+  - You can use Terraform's `templatefile function` to interpolate values into the script at resource creation time. This makes the script more adaptable and re-usable. (User data script)
+<br>
+
+- Use `lookup` function to select AMI:
+  - The `lookup function` retrieves the value of a single element from a map, given its key. (Map a region == specified ami. When you deploy, select the region and bam the selected ami is used)
+<br>
+
+- Use the `file` function:
+  - The `file` function does not interpolate values into file contents; you should only use it with files that do not need modification. (SSH key for an instance. File just reads the contents )
+<p>
+
+- Use a conditional expression:
+  - Conditional expressions select a value based on whether the expression evaluates to true or false.
+  - ex: (condition)If the `name` variable is NOT empty (?)then	(true value)Assign the `var.name` value to the local value	(:)else	(false value)Assign `random_id.id.hex` value to the local value
+
+```
+  name  = (var.name != "" ? var.name : random_id.id.hex) 
+```  
+- Splat: The `splat` expression captures all objects in a list that share an attribute. The special `*` symbol iterates over all of the elements of a given list and returns information based on the shared attribute you define.
+- Without the splat expression, Terraform would not be able to output the entire array of your instances and would only return the first item in the array.
 </details>
 
 <p>
-<details><summary>  </summary>
+<details><summary>8g: Configure resource using a dynamic block  </summary>
 <p>
 
+- Terraform provides the `dynamic` block to create repeatable nested blocks within a resource. A dynamic block is similar to the `for` expression. A dynamic block iterates over a child resource and generates a nested block for each element of that resource
+- Something like this:
+```
+...
+ dynamic "subnet" {
+    for_each = var.subnets
+    iterator = item   #optional
+    content {
+      name           = item.value.name
+      address_prefix = item.value.address_prefix
+...
+```
+
+vs:
+
+```
+...
+subnet {
+    name           = "snet1"
+    address_prefix = "10.10.1.0/24"
+  }
+...
+```
 </details>
 
 <p>
-<details><summary>  </summary>
+<details><summary>8h: Describe built-in dependency management (order of execution based)</summary>
 <p>
 
+- Terraform builds a dependency graph from the Terraform configurations, and walks this graph to generate plans, refresh state, and more. 
+- Graph nodes:
+  - Resource Node - Represents a single resource
+  - Provider Configuration Node - Represents the time to fully configure a provider.
+  - Resource Meta-Node - Represents a group of resources, but does not represent any action on its own
+<br>
+
+- TF will try to create a dependency graph based on your configuration and in cases where Terraform could not know implicitly that you can use a “depends_on” block to specify them explicitly.
 </details>
-
-<p>
-<details><summary>  </summary>
-<p>
-
-</details>
-
-<p>
-<details><summary>  </summary>
-<p>
-
-</details>
-
