@@ -1,5 +1,3 @@
-Still a work in progress...
-
 # Terraform Associate Exam Study Guide
 
 This repository contains a study guide created in preparation for passing the [Terraform Associate](https://www.hashicorp.com/certification/terraform-associate) certification exam (002). <p>
